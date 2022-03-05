@@ -1,7 +1,10 @@
 package emlakburada.controller;
 
 import emlakburada.client.AdvertClient;
+import emlakburada.dto.request.AdvertRequest;
+import emlakburada.dto.response.AdvertResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +20,22 @@ public class AdvertController {
     }
 
     @GetMapping
-    public List<Object> getAllAdverts() {
+    public ResponseEntity<List<AdvertResponse>> getAllAdverts() {
         return advertClient.getAllAdverts();
     }
 
     @PostMapping
-    public Object createAdvert(@RequestBody Object object) {
-        return advertClient.createAdvert(object);
+    public ResponseEntity<AdvertResponse> createAdvert(@RequestBody AdvertRequest advertRequest) {
+        return advertClient.createAdvert(advertRequest);
     }
 
     @PutMapping
-    public Object updateAdvert(@RequestBody Object object) {
-        return advertClient.updateAdvert(object);
+    public ResponseEntity<AdvertResponse> updateAdvert(@RequestBody AdvertRequest advertRequest) {
+        return advertClient.updateAdvert(advertRequest);
     }
 
     @DeleteMapping("/{id}")
-    public Object deleteAdvert(@PathVariable Integer id) {
+    public ResponseEntity<AdvertResponse> deleteAdvert(@PathVariable Integer id) {
         return advertClient.deleteAdvert(id);
     }
 }

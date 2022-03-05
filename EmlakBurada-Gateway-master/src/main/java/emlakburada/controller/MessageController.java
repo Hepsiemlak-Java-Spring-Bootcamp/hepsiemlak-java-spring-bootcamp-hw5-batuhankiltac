@@ -1,7 +1,10 @@
 package emlakburada.controller;
 
 import emlakburada.client.MessageClient;
+import emlakburada.dto.request.MessageRequest;
+import emlakburada.dto.response.MessageResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +20,22 @@ public class MessageController {
     }
 
     @GetMapping
-    public List<Object> getAllMessages() {
+    public ResponseEntity<List<MessageResponse>> getAllMessages() {
         return messageClient.getAllMessages();
     }
 
     @PostMapping
-    public Object createMessage(@RequestBody Object object) {
-        return messageClient.createMessage(object);
+    public ResponseEntity<MessageResponse> createMessage(@RequestBody MessageRequest messageRequest) {
+        return messageClient.createMessage(messageRequest);
     }
 
     @PutMapping
-    public Object updateMessage(@RequestBody Object object) {
-        return messageClient.updateMessage(object);
+    public ResponseEntity<MessageResponse> updateMessage(@RequestBody MessageRequest messageRequest) {
+        return messageClient.updateMessage(messageRequest);
     }
 
     @DeleteMapping("/{id}")
-    public Object deleteMessage(@PathVariable Integer id) {
+    public ResponseEntity<MessageResponse> deleteMessage(@PathVariable Integer id) {
         return messageClient.deleteMessage(id);
     }
 }

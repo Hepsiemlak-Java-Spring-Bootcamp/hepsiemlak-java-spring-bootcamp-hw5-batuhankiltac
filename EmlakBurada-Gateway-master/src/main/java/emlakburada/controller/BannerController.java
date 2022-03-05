@@ -1,7 +1,10 @@
 package emlakburada.controller;
 
 import emlakburada.client.BannerClient;
+import emlakburada.dto.request.BannerRequest;
+import emlakburada.dto.response.BannerResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +20,22 @@ public class BannerController {
     }
 
     @GetMapping
-    public List<Object> getAllBanners() {
+    public ResponseEntity<List<BannerResponse>> getAllBanners() {
         return bannerClient.getAllBanners();
     }
 
     @PostMapping
-    public Object createBanner(@RequestBody Object object) {
-        return bannerClient.createBanner(object);
+    public ResponseEntity<BannerResponse> createBanner(@RequestBody BannerRequest bannerRequest) {
+        return bannerClient.createBanner(bannerRequest);
     }
 
     @PutMapping
-    public Object updateBanner(@RequestBody Object object) {
-        return bannerClient.updateBanner(object);
+    public ResponseEntity<BannerResponse> updateBanner(@RequestBody BannerRequest bannerRequest) {
+        return bannerClient.updateBanner(bannerRequest);
     }
 
     @DeleteMapping("/{id}")
-    public Object deleteBanner(@PathVariable Integer id) {
+    public ResponseEntity<BannerResponse> deleteBanner(@PathVariable Integer id) {
         return bannerClient.deleteBanner(id);
     }
 }

@@ -1,6 +1,9 @@
 package emlakburada.client;
 
+import emlakburada.dto.request.MessageRequest;
+import emlakburada.dto.response.MessageResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +15,14 @@ import java.util.List;
 public interface MessageClient {
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)
-    List<Object> getAllMessages();
+    ResponseEntity<List<MessageResponse>> getAllMessages();
 
     @RequestMapping(value = "/messages", method = RequestMethod.POST)
-    Object createMessage(@RequestBody Object object);
+    ResponseEntity<MessageResponse> createMessage(@RequestBody MessageRequest messageRequest);
 
     @RequestMapping(value = "/messages", method = RequestMethod.PUT)
-    Object updateMessage(@RequestBody Object object);
+    ResponseEntity<MessageResponse> updateMessage(@RequestBody MessageRequest messageRequest);
 
     @RequestMapping(value = "/messages/{id}", method = RequestMethod.DELETE)
-    Object deleteMessage(@PathVariable Integer id);
+    ResponseEntity<MessageResponse> deleteMessage(@PathVariable Integer id);
 }

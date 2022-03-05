@@ -1,6 +1,9 @@
 package emlakburada.client;
 
+import emlakburada.dto.request.AdvertRequest;
+import emlakburada.dto.response.AdvertResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +15,14 @@ import java.util.List;
 public interface AdvertClient {
 
     @RequestMapping(value = "/adverts", method = RequestMethod.GET)
-    List<Object> getAllAdverts();
+    ResponseEntity<List<AdvertResponse>> getAllAdverts();
 
     @RequestMapping(value = "/adverts", method = RequestMethod.POST)
-    Object createAdvert(@RequestBody Object object);
+    ResponseEntity<AdvertResponse> createAdvert(@RequestBody AdvertRequest advertRequest);
 
     @RequestMapping(value = "/adverts", method = RequestMethod.PUT)
-    Object updateAdvert(@RequestBody Object object);
+    ResponseEntity<AdvertResponse> updateAdvert(@RequestBody AdvertRequest advertRequest);
 
     @RequestMapping(value = "/adverts/{id}", method = RequestMethod.DELETE)
-    Object deleteAdvert(@PathVariable Integer id);
+    ResponseEntity<AdvertResponse> deleteAdvert(@PathVariable Integer id);
 }

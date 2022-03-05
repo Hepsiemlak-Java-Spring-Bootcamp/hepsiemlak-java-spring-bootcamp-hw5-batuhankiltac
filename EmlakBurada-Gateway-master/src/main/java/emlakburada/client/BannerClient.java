@@ -1,6 +1,9 @@
 package emlakburada.client;
 
+import emlakburada.dto.request.BannerRequest;
+import emlakburada.dto.response.BannerResponse;
 import org.springframework.cloud.openfeign.FeignClient;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -12,14 +15,14 @@ import java.util.List;
 public interface BannerClient {
 
     @RequestMapping(value = "/banners", method = RequestMethod.GET)
-    List<Object> getAllBanners();
+    ResponseEntity<List<BannerResponse>> getAllBanners();
 
     @RequestMapping(value = "/banners", method = RequestMethod.POST)
-    Object createBanner(@RequestBody Object object);
+    ResponseEntity<BannerResponse> createBanner(@RequestBody BannerRequest bannerRequest);
 
     @RequestMapping(value = "/banners", method = RequestMethod.PUT)
-    Object updateBanner(@RequestBody Object object);
+    ResponseEntity<BannerResponse> updateBanner(@RequestBody BannerRequest bannerRequest);
 
     @RequestMapping(value = "/banners/{id}", method = RequestMethod.DELETE)
-    Object deleteBanner(@PathVariable Integer id);
+    ResponseEntity<BannerResponse> deleteBanner(@PathVariable Integer id);
 }

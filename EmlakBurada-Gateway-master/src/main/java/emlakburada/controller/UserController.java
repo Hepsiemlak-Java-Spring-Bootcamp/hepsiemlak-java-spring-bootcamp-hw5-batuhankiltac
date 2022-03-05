@@ -1,7 +1,10 @@
 package emlakburada.controller;
 
 import emlakburada.client.UserClient;
+import emlakburada.dto.request.UserRequest;
+import emlakburada.dto.response.UserResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -17,22 +20,22 @@ public class UserController {
     }
 
     @GetMapping
-    public List<Object> getAllUsers() {
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
         return userClient.getAllUsers();
     }
 
     @PostMapping
-    public Object createUser(@RequestBody Object object) {
-        return userClient.createUser(object);
+    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest userRequest) {
+        return userClient.createUser(userRequest);
     }
 
     @PutMapping
-    public Object updateUser(@RequestBody Object object) {
-        return userClient.updateUser(object);
+    public ResponseEntity<UserResponse> updateUser(@RequestBody UserRequest userRequest) {
+        return userClient.updateUser(userRequest);
     }
 
     @DeleteMapping("/{id}")
-    public Object deleteUser(@PathVariable Integer id) {
+    public ResponseEntity<UserResponse> deleteUser(@PathVariable Integer id) {
         return userClient.deleteUser(id);
     }
 }
