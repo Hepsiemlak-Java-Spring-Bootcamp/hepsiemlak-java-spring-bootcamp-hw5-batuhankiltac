@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "feign-client-message", url = "http://localhost:8081/messages")
+@FeignClient(value = "feign-client-message", url = "http://localhost:8081")
 public interface MessageClient {
 
     @RequestMapping(value = "/messages", method = RequestMethod.GET)

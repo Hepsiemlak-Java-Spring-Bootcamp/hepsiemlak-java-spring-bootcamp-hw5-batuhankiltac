@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "feign-client-banner", url = "http://localhost:8082/banners")
+@FeignClient(value = "feign-client-banner", url = "http://localhost:8082")
 public interface BannerClient {
 
     @RequestMapping(value = "/banners", method = RequestMethod.GET)

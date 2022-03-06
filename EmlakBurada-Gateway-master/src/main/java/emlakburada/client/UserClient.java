@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.List;
 
-@FeignClient(value = "feign-client-user", url = "http://localhost:8081/users")
+@FeignClient(value = "feign-client-user", url = "http://localhost:8081")
 public interface UserClient {
 
     @RequestMapping(value = "/users", method = RequestMethod.GET)
